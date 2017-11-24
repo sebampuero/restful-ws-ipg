@@ -2,10 +2,10 @@
 <firmenliste xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	         xsi:noNamespaceSchemaLocation="firmendaten.xsd"
              version="1">
-
+    
     <firma name="4system GmbH">
         <branche>E-Learning</branche>
-        <strasse_hnr>Kurfürstenstraße 114</strasse_hnr>
+        <strasse_hnr>Kurfrstenstraße 114</strasse_hnr>
         <plz>10787</plz>
         <ort>Berlin</ort>
         <land>DE</land>
@@ -1139,7 +1139,7 @@
         <erfassungsdatum>2012-01-31</erfassungsdatum>
     </firma>
 
-    <firma name="eEntwicklung.net Gmbh">
+    <firma name="eEntwicklung.net GmbH">
         <branche>N/A</branche>
         <strasse_hnr>Freiheitstr. 124/126</strasse_hnr>
         <plz>15745</plz>
