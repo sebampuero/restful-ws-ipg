@@ -1,1 +1,1 @@
-rollen = {"ag","gmbh","gmbh & co.kg","gmbh & co.hg"}
+rollen = {"AG","GmbH","GmbH & CO. KG","GmbH & CO. HG","EG","e.K","OHG","KG","KGaA","GbR","UG","AG & CO. KG","AG & CO."}

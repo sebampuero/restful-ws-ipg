@@ -2,7 +2,7 @@
 <firmenliste xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	         xsi:noNamespaceSchemaLocation="firmendaten.xsd"
              version="1">
-
+	
     <firma name="4system GmbH">
         <branche>E-Learning</branche>
         <strasse_hnr>Kurfrstenstraße 114</strasse_hnr>
@@ -454,7 +454,7 @@
         <ansprechpartner name="Stefan Ferber">
             <anrede>Herr</anrede>
             <titel>Dr.</titel>
-            <funktion>Director Communities &amp;amp; Partner Networks</funktion>
+            <funktion>Director Communities &amp; Partner Networks</funktion>
             <telefon>0711 811-58114</telefon>
             <fax>811-58100</fax>
             <email>stefan.ferber@bosch-si.com</email>
@@ -629,7 +629,7 @@
         <erfassungsdatum>2007-04-03</erfassungsdatum>
     </firma>
 
-    <firma name="Computer Zentrum Binder &amp;amp; Karl GmbH">
+    <firma name="Computer Zentrum Binder &amp; Karl GmbH">
         <branche>N/A</branche>
         <strasse_hnr>Lindenplatz 2</strasse_hnr>
         <plz>15344</plz>
@@ -685,7 +685,7 @@
         <erfassungsdatum>2006-02-11</erfassungsdatum>
     </firma>
 
-    <firma name="CSA Computer &amp;amp; Antriebstechnik GmbH">
+    <firma name="CSA Computer &amp; Antriebstechnik GmbH">
         <branche>N/A</branche>
         <strasse_hnr>Rheinstraße 7e</strasse_hnr>
         <plz>14513</plz>
@@ -854,7 +854,7 @@
         <erfassungsdatum>2012-01-31</erfassungsdatum>
     </firma>
 
-    <firma name="DeTeWe - Deutsche Telefonwerke AG &amp;amp; Co.">
+    <firma name="DeTeWe - Deutsche Telefonwerke AG &amp; Co.">
         <branche>Telekommunikation</branche>
         <strasse_hnr>Zeughofstr. 1</strasse_hnr>
         <plz>10997</plz>
@@ -1018,7 +1018,7 @@
         <erfassungsdatum>2002-06-12</erfassungsdatum>
     </firma>
 
-    <firma name="Dimension Data Germany AG &amp;amp; Co. KG">
+    <firma name="Dimension Data Germany AG &amp; Co. KG">
         <branche>N/A</branche>
         <strasse_hnr>In den Schwarzwiesen 8</strasse_hnr>
         <plz>61440</plz>
