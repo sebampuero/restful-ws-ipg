@@ -1,0 +1,1 @@
+rollen = {"AG","GmbH","GmbH & Co.KG","GmbH & Co.OHG"}
