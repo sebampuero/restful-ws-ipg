@@ -10,54 +10,57 @@ def get_firmen_objects(name, branche, ort, rolle):
     root = tree.getroot()
     firmen = root.findall('firma')
     firmen_list = []
-    if rolle in rollen:
+    # if the role exists
+    if rolle.lower() in rollen:
         for firma_element in firmen:
-            name_element = firma_element.attrib['name']
-            branche_element = firma_element.find('branche').text
-            ort_element = firma_element.find('ort').text
-            if (name_element == name and branche == "" and ort == "" and rolle in name_element):
+            name_element = firma_element.attrib['name'].lower()
+            branche_element = firma_element.find('branche').text.lower()
+            ort_element = firma_element.find('ort').text.lower()
+            if name in name_element and branche == "" and ort == "" and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif (name_element == name and branche == branche_element and ort == "" and rolle in name_element):
+            elif name in name_element and branche == branche_element and ort == "" and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif (name_element == name and branche == branche_element and ort == ort_element.text and rolle in name_element):
+            elif name in name_element and branche == branche_element and ort == ort_element.text and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == branche_element and ort == ort_element and rolle in name_element):
+            elif "" == name and branche == branche_element and ort == ort_element and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == "" and ort == ort_element and rolle in name_element):
+            elif "" == name and branche == "" and ort == ort_element and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == branche_element and ort == "" and rolle in name_element):
+            elif "" == name and branche == branche_element and ort == "" and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif (name_element == name and branche == "" and ort == ort_element and rolle in name_element):
+            elif name in name_element and branche == "" and ort == ort_element and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == "" and ort == "" and rolle in name_element):
+            elif "" == name and branche == "" and ort == "" and rolle in name_element:
                 firmen_list = filter_objects(firma_element, firmen_list)
-    elif rolle not in rollen:
+    # if the role does not exist or was not given
+    elif rolle.lower() not in rollen:
         for firma_element in firmen:
-            name_element = firma_element.attrib['name']
-            branche_element = firma_element.find('branche').text
-            ort_element = firma_element.find('ort').text
-            if (name_element == name and branche == "" and ort == "" and check_for_role(name_element)):
+            name_element = firma_element.attrib['name'].lower()
+            branche_element = firma_element.find('branche').text.lower()
+            ort_element = firma_element.find('ort').text.lower()
+            if name in name_element and branche == "" and ort == "" and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif (name_element == name and branche == branche_element and ort == "" and check_for_role(name_element)):
+            elif name in name_element and branche == branche_element and ort == "" and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif (name_element == name and branche == branche_element and ort == ort_element.text and check_for_role(name_element)):
+            elif name in name_element and branche == branche_element and ort == ort_element and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == branche_element and ort == ort_element and check_for_role(name_element)):
+            elif "" == name and branche == branche_element and ort == ort_element and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == "" and ort == ort_element and check_for_role(name_element)):
+            elif "" == name and branche == "" and ort == ort_element and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == branche_element and ort == "" and check_for_role(name_element)):
+            elif "" == name and branche == branche_element and ort == "" and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ( name_element == name and branche == "" and ort == ort_element and check_for_role(name_element)):
+            elif name in name_element and branche == "" and ort == ort_element and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
-            elif ("" == name and branche == "" and ort == "" and check_for_role(name_element)):
+            elif "" == name and branche == "" and ort == "" and check_for_role(name_element):
                 firmen_list = filter_objects(firma_element, firmen_list)
+    print(firmen_list)
     return json.dumps(firmen_list)
 
 
 def check_for_role(firma_name):
     for role in rollen:
-        if role in firma_name:
+        if role.lower() in firma_name:
             return False
     return True
 
@@ -67,6 +70,7 @@ def filter_objects(firma_element, firmen_list):
     firma.name = firma_element.attrib['name']
     firma.branche = firma_element.find('branche').text
     firma.strasse_hnr = firma_element.find('strasse_hnr').text
+    print(firma_element.find('strasse_hnr').text)
     firma.plz = firma_element.find('plz').text
     firma.ort = firma_element.find('ort').text
     firma.land = firma_element.find('land').text
