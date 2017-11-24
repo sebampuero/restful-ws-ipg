@@ -13,7 +13,9 @@ def get():
     ort = request.args.get('ort', '')
     rolle = request.args.get('rolle', '')
     firmen_list = get_firmen_objects(name,branche,ort,rolle)
-    return Response(firmen_list, mimetype="application/json")
+    if name == "" and branche == "" and ort == "" and rolle == "":
+        return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
+    return Response(firmen_list, mimetype="application/json", status=200)
 
 
 if __name__ == "__main__":
