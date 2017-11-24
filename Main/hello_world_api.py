@@ -12,7 +12,7 @@ def get():
     branche = request.args.get('branche', '')
     ort = request.args.get('ort', '')
     rolle = request.args.get('rolle', '')
-    firmen_list = get_firmen_objects()
+    firmen_list = get_firmen_objects(name,branche,ort,rolle)
     return Response(firmen_list, mimetype="application/json")
 
 

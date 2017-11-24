@@ -1,17 +1,24 @@
 from Model.Firma import Firma, Ansprechpartner
 import xml.etree.ElementTree as ET
 import json
+# import the rolen in this part
 from Config.config import rollen
 
 
-def get_firmen_objects(name,branche,ort,rolle):
+def get_firmen_objects(name, branche, ort, rolle):
+    # parse the xml file
     with open('..\\Data\\firmendaten.xml', 'r') as xml_file:
         tree = ET.parse(xml_file)
     root = tree.getroot()
     firmen = root.findall('firma')
     firmen_list = []
+    # loop through the firmen
     for firma_element in firmen:
-        if firma_element.find('ort').text == 'Berlin':
+        # simple filtering. We need to add the ability to filter with one param and in combination
+        # we need also to add the ability to filter according to the given role
+        if firma_element.attrib['name'] == name and firma_element.find('ort').text == ort \
+                and firma_element.find('branche').text == branche and (rolle in firma_element.attrib['name']):
+            # create object and populate it
             firma = Firma()
             firma.name = firma_element.attrib['name']
             firma.branche = firma_element.find('branche').text
@@ -38,10 +45,10 @@ def get_firmen_objects(name,branche,ort,rolle):
                 ansprechpartner.fax = "" if ansprechpartner_element.find('fax') is None else \
                     ansprechpartner_element.find('fax').text
                 ansprechpartner.email = ansprechpartner_element.find('email').text
+                # declare the object as dictionary in order to be able to be parsed into JSON
                 ansprechpartner = ansprechpartner.__dict__
                 firma.ansprechpartner.append(ansprechpartner)
-
+            # same as above
             firma = firma.__dict__
             firmen_list.append(firma)
     return json.dumps(firmen_list)
-
