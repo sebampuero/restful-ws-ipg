@@ -12,9 +12,10 @@ def get():
     branche = request.args.get('branche', '').lower()
     ort = request.args.get('ort', '').lower()
     rolle = request.args.get('rolle', '')
-    firmen_list = get_firmen_JSON(name,branche,ort,rolle)
+    print(rolle)
     if name == "" and branche == "" and ort == "" and rolle == "":
         return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
+    firmen_list = get_firmen_JSON(name, branche, ort, rolle)
     return Response(firmen_list, mimetype="application/json", status=200)
 
 

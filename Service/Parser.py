@@ -21,7 +21,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
             elif name in name_element and branche == branche_element and ort == "" and rolle in name_element:
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche == branche_element and ort == ort_element.text and rolle in name_element:
+            elif name in name_element and branche == branche_element and ort == ort_element and rolle in name_element:
                 firmen_list = get_firmen_list(firma_element, firmen_list)
             elif "" == name and branche == branche_element and ort == ort_element and rolle in name_element:
                 firmen_list = get_firmen_list(firma_element, firmen_list)
@@ -56,7 +56,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
             elif "" == name and branche == "" and ort == "" and check_for_role(name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-    return json.dumps(firmen_list)
+    return json.dumps(firmen_list).replace("name","@name")
 
 
 def check_for_role(firma_name):
