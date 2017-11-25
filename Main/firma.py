@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import Response
 from Service.Parser import get_firmen_JSON
+from Config.format import format,post_string,pre_string
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def get():
     if name == "" and branche == "" and ort == "" and rolle == "":
         return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
     firmen_list = get_firmen_JSON(name, branche, ort, rolle)
-    return Response(firmen_list, mimetype="application/json", status=200)
+    return Response(pre_string+firmen_list+post_string, mimetype="application/json", status=200)
 
 
 if __name__ == "__main__":
