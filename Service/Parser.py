@@ -6,7 +6,7 @@ from Config.config import rollen
 
 def get_firmen_JSON(name, branche, ort, rolle):
     with open('..\\Data\\firmendaten.xml', 'r') as xml_file:
-        tree = ET.parse(xml_file,ET.XMLParser(encoding='urf-8'))
+        tree = ET.parse(xml_file, ET.XMLParser(encoding='utf-8'))
     root = tree.getroot()
     firmen = root.findall('firma')
     firmen_list = []

@@ -1612,7 +1612,7 @@
         <erfassungsdatum>2003-02-04</erfassungsdatum>
     </firma>
 
-    <firma name="hns hardware netzwerke software gmbH">
+    <firma name="hns hardware netzwerke software GmbH">
         <branche>N/A</branche>
         <strasse_hnr>Steinstraße 13</strasse_hnr>
         <plz>10119</plz>
@@ -2059,7 +2059,7 @@
             <funktion>GF</funktion>
             <telefon>03375 25 81 88</telefon>
             <fax>25 81 50</fax>
-            <email>torsten.elster@karp-gmbH.de</email>
+            <email>torsten.elster@karp-GmbH.de</email>
         </ansprechpartner>
         <erfassungsdatum>2010-10-05</erfassungsdatum>
     </firma>
@@ -3448,7 +3448,7 @@
         <erfassungsdatum>2008-12-09</erfassungsdatum>
     </firma>
 
-    <firma name="v3 agentur für medizinisches Marketing gmbH">
+    <firma name="v3 agentur für medizinisches Marketing GmbH">
         <branche>N/A</branche>
         <strasse_hnr>Marburger Str. 2</strasse_hnr>
         <plz>10789</plz>
