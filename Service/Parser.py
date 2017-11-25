@@ -2,7 +2,7 @@ from Model.Firma import Firma, Ansprechpartner
 import xml.etree.ElementTree as ET
 import json
 from Config.config import rollen
-
+import re
 
 def get_firmen_JSON(name, branche, ort, rolle):
     with open('..\\Data\\firmendaten.xml', 'r') as xml_file:
@@ -14,30 +14,30 @@ def get_firmen_JSON(name, branche, ort, rolle):
     if rolle in rollen:
         print("in role")
         for firma_element in firmen:
-            name_element = firma_element.attrib['name']
+            name_element = firma_element.attrib['name'].lower()
             branche_element = firma_element.find('branche').text.lower()
             ort_element = firma_element.find('ort').text.lower()
-            if name in name_element and branche == "" and ort == "" and rolle in name_element:
+            if name in name_element and branche == "" and ort == "" and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche == branche_element and ort == "" and rolle in name_element:
+            elif name in name_element and branche == branche_element and ort == "" and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche == branche_element and ort == ort_element and rolle in name_element:
+            elif name in name_element and branche == branche_element and ort == ort_element and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == branche_element and ort == ort_element and rolle in name_element:
+            elif "" == name and branche == branche_element and ort == ort_element and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == "" and ort == ort_element and rolle in name_element:
+            elif "" == name and branche == "" and ort == ort_element and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == branche_element and ort == "" and rolle in name_element:
+            elif "" == name and branche == branche_element and ort == "" and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche == "" and ort == ort_element and rolle in name_element:
+            elif name in name_element and branche == "" and ort == ort_element and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == "" and ort == "" and rolle in name_element:
+            elif "" == name and branche == "" and ort == "" and (re.search(r'\b'+rolle+'\\b',name_element,re.I)):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
     # if the role does not exist or was not given
     elif rolle not in rollen:
         print("not in role")
         for firma_element in firmen:
-            name_element = firma_element.attrib['name']
+            name_element = firma_element.attrib['name'].lower()
             branche_element = firma_element.find('branche').text.lower()
             ort_element = firma_element.find('ort').text.lower()
             if name in name_element and branche == "" and ort == "" and check_for_role(name_element):
@@ -61,7 +61,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
 
 def check_for_role(firma_name):
     for role in rollen:
-        if role in firma_name:
+        if re.search(r'\b' + role + '\\b', firma_name, re.I):
             return False
     return True
 

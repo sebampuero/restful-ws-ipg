@@ -9,10 +9,10 @@ app = Flask(__name__)
 
 @app.route('/firmen', methods=['GET'])
 def get():
-    name = request.args.get('name', '')
+    name = request.args.get('name', '').lower()
     branche = request.args.get('branche', '').lower()
     ort = request.args.get('ort', '').lower()
-    rolle = request.args.get('rolle', '')
+    rolle = request.args.get('rolle', '').lower()
     print(rolle)
     if name == "" and branche == "" and ort == "" and rolle == "":
         return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
