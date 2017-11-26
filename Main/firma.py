@@ -13,6 +13,7 @@ def get():
     branche = request.args.get('branche', '').lower().strip()
     ort = request.args.get('ort', '').lower().strip()
     rolle = request.args.get('rolle', '').lower().strip()
+    print(rolle)
     if name == "" and branche == "" and ort == "" and rolle == "":
         return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
     firmen_list = get_firmen_JSON(name, branche, ort, rolle)

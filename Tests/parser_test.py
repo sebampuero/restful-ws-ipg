@@ -1,14 +1,15 @@
-from Service.Parser import get_firmen_JSON
-import json
+role = "mbh"
+name = "Derdack gmbh"
 
-name = "TH"
-branche = ""
-ort = "wildau"
-rolle = ""
 
-pre_string = "{\"json\":{\"firma\":"
-post_string = "}}"
 
-list = pre_string + get_firmen_JSON(name, branche, ort, rolle) + post_string
+def is_role_in_name(role, name):
+    try:
+        index = name.index(role)
+        if name[index-1] == " ":
+            print("yes")
+    except:
+        print("fail")
 
-print(list)
+
+is_role_in_name(role, name)

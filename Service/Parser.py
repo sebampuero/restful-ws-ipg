@@ -19,31 +19,24 @@ def get_firmen_JSON(name, branche, ort, rolle):
             branche_element = firma_element.find('branche').text.lower()
             ort_element = firma_element.find('ort').text.lower()
             # check role in name as the whole word and not if it is contained inside another word using regex
-            if name in name_element and branche == "" and ort == "" and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            if name in name_element and branche == "" and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche in branche_element and ort == "" and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif name in name_element and branche in branche_element and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche in branche_element and ort == ort_element and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif name in name_element and branche in branche_element and ort == ort_element and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche in branche_element and ort == ort_element and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif "" == name and branche in branche_element and ort == ort_element and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == "" and ort == ort_element and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif "" == name and branche == "" and ort == ort_element and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche in branche_element and ort == "" and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif "" == name and branche in branche_element and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif name in name_element and branche == "" and ort == ort_element and (
-            re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif name in name_element and branche == "" and ort == ort_element and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
-            elif "" == name and branche == "" and ort == "" and (re.search(r'\b' + rolle + '\\b', name_element, re.I)):
+            elif "" == name and branche == "" and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
     # if the role does not exist or was not given
-    elif rolle not in rollen:
+    elif rolle not in rollen and rolle == "":
         print("not in role")
         for firma_element in firmen:
             name_element = firma_element.attrib['name'].lower()
@@ -66,14 +59,25 @@ def get_firmen_JSON(name, branche, ort, rolle):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
             elif "" == name and branche == "" and ort == "" and has_not_role(name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
+    else:
+        return "[]"
     return json.dumps(firmen_list).replace("name", "@name")
 
 
 def has_not_role(firma_name):
     for role in rollen:
-        if re.search(r'\b' + role + '\\b', firma_name, re.I):
+        if is_role_in_name(role, firma_name):
             return False
     return True
+
+
+def is_role_in_name(role, name):
+    try:
+        index = name.index(role)
+        if name[index - 1] == " ":
+            return True
+    except:
+        return False
 
 
 def get_firmen_list(firma_element, firmen_list):
