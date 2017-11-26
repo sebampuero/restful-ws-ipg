@@ -72,7 +72,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
 # return true if it has no role, false otherwise
 def has_not_role(firma_name):
     for role in rollen:
-        if is_role_in_name(role, firma_name):
+        if is_role_in_name(role, firma_name.strip()):
             return False
     return True
 
@@ -86,7 +86,12 @@ def is_role_in_name(role, name):
         if (name[index - 1] == " ") and ((index + len(role)) % len(name) == 0):
             return True
     except:
-        return False
+        try:
+            index = name.index(role)
+            if (name[index-1] == " ") and (name[index+len(role)] == " "):
+                return True
+        except:
+            return False
     else:
         return False
 
