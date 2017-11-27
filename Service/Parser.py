@@ -23,7 +23,6 @@ def get_firmen_JSON(name, branche, ort, rolle):
             name_element = firma_element.attrib['name'].lower()
             branche_element = firma_element.find('branche').text.lower()
             ort_element = firma_element.find('ort').text.lower()
-            # check role in name as the whole word and not if it is contained inside another word using regex
             if name in name_element and branche == "" and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
             elif name in name_element and branche in branche_element and ort == "" and is_role_in_name(rolle, name_element):
@@ -41,7 +40,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
             elif "" == name and branche == "" and ort == "" and is_role_in_name(rolle, name_element):
                 firmen_list = get_firmen_list(firma_element, firmen_list)
     # if the role does not exist or was not given
-    elif rolle not in rollen and rolle == "":
+    elif rolle == "keine":
         print("not in role")
         for firma_element in firmen:
             name_element = firma_element.attrib['name'].lower()
@@ -67,6 +66,7 @@ def get_firmen_JSON(name, branche, ort, rolle):
         return "[]"
     return json.dumps(firmen_list).replace("name", "@name")
 
+
 # Check if the given company has no role
 # @param firma_name the name of the company
 # return true if it has no role, false otherwise
@@ -75,6 +75,7 @@ def has_not_role(firma_name):
         if is_role_in_name(role, firma_name.strip()):
             return False
     return True
+
 
 # Check if the given name has a role in it
 # @param role the role to check
@@ -94,6 +95,7 @@ def is_role_in_name(role, name):
             return False
     else:
         return False
+
 
 # Parse the XML Elements into objects and populate the given list
 # @param firma_element the XML root element

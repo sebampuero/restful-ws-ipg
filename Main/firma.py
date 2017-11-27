@@ -1,8 +1,6 @@
-from flask import Flask
-from flask import request
-from flask import Response
+from flask import Flask, request, Response
 from Service.Parser import get_firmen_JSON
-from Config.format import format,post_string,pre_string
+from Config.format import post_string,pre_string
 
 app = Flask(__name__)
 
@@ -15,7 +13,7 @@ def get():
     rolle = request.args.get('rolle', '').lower().strip()
     print(rolle)
     if name == "" and branche == "" and ort == "" and rolle == "":
-        return Response("Keine Parameter wurden eingegeben", status=400,mimetype="text/html")
+        return Response("<h3>Keine Parameter wurden eingegeben</h3>", status=400,mimetype="text/html")
     firmen_list = get_firmen_JSON(name, branche, ort, rolle)
     return Response(pre_string+firmen_list+post_string, mimetype="application/json", status=200)
 
