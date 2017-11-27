@@ -1,9 +1,12 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response,redirect
 from Service.Parser import get_firmen_JSON
 from Config.format import post_string,pre_string
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return redirect("/firmen")
 
 @app.route('/firmen', methods=['GET'])
 def get():
