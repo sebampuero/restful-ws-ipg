@@ -2,7 +2,7 @@ from Model.Firma import Firma, Ansprechpartner
 import xml.etree.ElementTree as ET
 import json
 from Config.config import rollen
-
+filename = "Data\\firmendaten.xml"
 
 # Get the list of companies according to query parameters in JSON format
 # @param name the name of the company
@@ -11,7 +11,7 @@ from Config.config import rollen
 # @param rolle the role the company has
 # return the list of companies queried in JSON
 def get_firmen_JSON(name, branche, ort, rolle):
-    with open('..\\Data\\firmendaten.xml', 'r') as xml_file:
+    with open(filename, 'r') as xml_file:
         tree = ET.parse(xml_file, ET.XMLParser(encoding='utf-8'))
     root = tree.getroot()
     firmen = root.findall('firma')
