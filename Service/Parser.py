@@ -2,7 +2,7 @@ from Model.Firma import Firma, Ansprechpartner
 import xml.etree.ElementTree as ET
 import json
 from Config.config import rollen
-filename = "Data\\firmendaten.xml"
+filename = "..\Data\\firmendaten.xml"
 
 # Get the list of companies according to query parameters in JSON format
 # @param name the name of the company
